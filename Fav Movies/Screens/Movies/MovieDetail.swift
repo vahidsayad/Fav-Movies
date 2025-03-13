@@ -12,7 +12,7 @@ import SwiftData
 struct MovieDetail: View {
     let movie: Movie
     @Environment(Router.self) var router
-//    @Environment(FavoritesStore.self) var favoritesStore
+    @Environment(FavoritesStore.self) var favoritesStore
     
     var body: some View {
         VStack {
@@ -34,16 +34,16 @@ struct MovieDetail: View {
                 
                 Spacer()
                 
-//                Button {
-////                    favoritesStore.toggleFavorite(movie)
-//                } label: {
-//                    Image(systemName: "heart" + (favoritesStore.isFavorite(movie) ? ".fill" : ""))
-//                        .resizable()
-//                        .foregroundStyle(favoritesStore.isFavorite(movie) ? .red : .white)
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: 30)
-//                        .padding([.horizontal, .top])
-//                }
+                Button {
+                    favoritesStore.toggleFavorite(movie)
+                } label: {
+                    Image(systemName: "heart" + (favoritesStore.isFavorite(movie) ? ".fill" : ""))
+                        .resizable()
+                        .foregroundStyle(favoritesStore.isFavorite(movie) ? .red : .white)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30)
+                        .padding([.horizontal, .top])
+                }
             }
             .foregroundStyle(Color.white)
             
