@@ -11,9 +11,7 @@ import SwiftData
 @main
 struct Fav_MoviesApp: App {
     var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
+        let schema = Schema([FavoriteMovie.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
@@ -27,6 +25,7 @@ struct Fav_MoviesApp: App {
         WindowGroup {
             ContentView()
         }
+        .environment(FavoritesStore(context: sharedModelContainer.mainContext))
         .modelContainer(sharedModelContainer)
     }
 }

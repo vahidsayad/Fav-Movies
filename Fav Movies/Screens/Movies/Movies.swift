@@ -57,14 +57,7 @@ struct Movies: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background {
-            LinearGradient(colors: [
-                Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)),
-                Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))
-            ],
-                           startPoint: .topLeading, endPoint: .bottomTrailing)
-            .ignoresSafeArea()
-        }
+        .defaultBackground()
         .task {
             await store.loadMovies()
         }

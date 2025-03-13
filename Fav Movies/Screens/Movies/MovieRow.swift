@@ -25,7 +25,7 @@ struct MovieRow: View {
                 Text(movie.releaseDate)
             }
             .font(.subheadline)
-            .foregroundStyle(Color.gray)
+            .foregroundStyle(Color.white.opacity(0.9))
         }
         .padding()
         .background {
@@ -36,7 +36,7 @@ struct MovieRow: View {
                 Image("movie-placeholder")
             }
             .overlay {
-                Color.black.opacity(0.7)
+                Color.black.opacity(0.5)
             }
         }
         .background(.regularMaterial)

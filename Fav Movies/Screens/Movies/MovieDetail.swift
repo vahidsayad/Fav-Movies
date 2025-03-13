@@ -7,10 +7,12 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import SwiftData
 
 struct MovieDetail: View {
     let movie: Movie
     @Environment(Router.self) var router
+//    @Environment(FavoritesStore.self) var favoritesStore
     
     var body: some View {
         VStack {
@@ -25,22 +27,23 @@ struct MovieDetail: View {
                         .padding([.top, .horizontal])
                 }
                 
-                Text(movie.originalTitle)
+                Text(movie.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title.weight(.bold))
                     .padding(.top)
                 
                 Spacer()
                 
-                Button {
-                    
-                } label: {
-                    Image(systemName: "heart")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 30)
-                        .padding([.horizontal, .top])
-                }
+//                Button {
+////                    favoritesStore.toggleFavorite(movie)
+//                } label: {
+//                    Image(systemName: "heart" + (favoritesStore.isFavorite(movie) ? ".fill" : ""))
+//                        .resizable()
+//                        .foregroundStyle(favoritesStore.isFavorite(movie) ? .red : .white)
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 30)
+//                        .padding([.horizontal, .top])
+//                }
             }
             .foregroundStyle(Color.white)
             
@@ -80,12 +83,15 @@ struct MovieDetail: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
+        
         .background {
             WebImage(url: URL(string: Constants.posterBaseURL + (movie.posterPath ?? ""))) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fill)
             } placeholder: {
                 Image("movie-placeholder")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
             }
             .overlay {
                 LinearGradient(colors: [.black.opacity(0.7), .black.opacity(0.2)],
