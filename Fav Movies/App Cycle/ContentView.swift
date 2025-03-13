@@ -15,9 +15,20 @@ enum TabItem {
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    @State var router = Router()
 
     var body: some View {
-        Home()
+        NavigationStack(path: $router.navigationPath) {
+            Home()
+                .environment(router)
+                .navigationDestination(for: MovieRouter.self) { route in
+                    switch route {
+                    case .detail(let movie):
+                        MovieDetail(movie: movie)
+                            .environment(router)
+                    }
+                }
+        }
     }
 
     private func addItem() {
